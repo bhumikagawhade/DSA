@@ -14,7 +14,8 @@ public:
             ans = min(ans, maxi[{left,i}]*maxi[{i+1,right}]+solve(arr,maxi,left,i,dp)+solve(arr,maxi,i+1,right,dp));
         }
 
-        return dp[left][right] = ans;
+        dp[left][right] = ans;
+        return dp[left][right];
     }
     int mctFromLeafValues(vector<int>& arr) {
         map<pair<int,int>,int> maxi;
