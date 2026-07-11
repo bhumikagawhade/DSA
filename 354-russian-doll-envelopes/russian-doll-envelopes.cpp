@@ -16,14 +16,16 @@ public:
         vector<int> ans;
         for(auto env : envelopes){
             int currHeight = env[1];
+            
 
-            //loer bound
-            auto element = lower_bound(ans.begin(),ans.end(),currHeight);
-            if( element == ans.end()){
+            //lower bound
+            
+            if( ans.empty() || currHeight > ans.back()){
                 ans.push_back(currHeight);
             }
             else{
-                *element = currHeight;
+                int index = lower_bound(ans.begin(),ans.end(),currHeight) - ans.begin();
+                ans[index] = currHeight;
             }
         }
 
