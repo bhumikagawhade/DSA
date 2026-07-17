@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-SELECT Name AS Customers
+SELECT c.Name AS Customers
 FROM Customers as c
 LEFT JOIN 
 orders as o 
