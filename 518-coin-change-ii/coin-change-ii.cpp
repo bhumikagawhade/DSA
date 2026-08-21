@@ -25,8 +25,29 @@ public:
 
     }
     int change(int amount, vector<int>& coins) {
-        vector<vector<int>> dp(amount+1,vector<int>(coins.size(),-1));
-        int total=solve(amount,coins,0,dp);
-        return total;
+        vector<vector<unsigned long long >> dp(amount+1,vector<unsigned long long >(coins.size()+1,0));
+
+        for(int i=0 ;i<coins.size();i++){
+            dp[0][i] = 1;
+        }
+
+        for(int i=1;i<=amount;i++){
+            for(int j=coins.size()-1;j>=0;j--){
+                int currcoin = coins[j];
+                unsigned long long inc = 0;
+                if(i-currcoin >= 0){
+                    inc = dp[i-currcoin][j];
+                }
+                
+                unsigned long long exc = dp[i][j+1];
+
+                dp[i][j]=inc+exc;
+            }
+        }
+
+        // int total=solve(amount,coins,0,dp);
+        // return total;
+
+        return dp[amount][0];
     }
 };
